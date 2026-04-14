@@ -2,9 +2,11 @@ const menuButton = document.querySelector("[data-menu-toggle]");
 const siteNav = document.querySelector("[data-site-nav]");
 
 if (menuButton && siteNav) {
+  menuButton.setAttribute("aria-label", "Open menu");
   menuButton.addEventListener("click", () => {
     const isExpanded = menuButton.getAttribute("aria-expanded") === "true";
     menuButton.setAttribute("aria-expanded", String(!isExpanded));
+    menuButton.setAttribute("aria-label", isExpanded ? "Open menu" : "Close menu");
     siteNav.classList.toggle("is-open", !isExpanded);
   });
 }

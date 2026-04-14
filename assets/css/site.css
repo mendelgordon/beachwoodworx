@@ -91,6 +91,71 @@ button, .button { font: inherit; }
   width: 3rem; height: 3rem;
   border: 1px solid var(--line); border-radius: 999px;
   background: var(--surface); color: var(--ink); cursor: pointer;
+  transition: transform 180ms ease, border-color 180ms ease, background-color 180ms ease, color 180ms ease;
+}
+
+.menu-toggle:hover {
+  background: var(--brand-light);
+  border-color: oklch(0.83 0.04 210);
+}
+
+.menu-toggle:focus-visible {
+  outline: none;
+  border-color: var(--accent-deep);
+  box-shadow: 0 0 0 4px oklch(0.90 0.03 210 / 0.9);
+}
+
+.menu-toggle[aria-expanded="true"] {
+  background: var(--brand-light);
+  color: var(--brand-strong);
+  border-color: oklch(0.83 0.04 210);
+}
+
+.menu-toggle-box {
+  position: relative;
+  display: block;
+  width: 1.1rem;
+  height: 0.9rem;
+}
+
+.menu-toggle-box::before,
+.menu-toggle-box::after,
+.menu-toggle-box span {
+  content: "";
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  border-radius: 999px;
+  background: currentColor;
+  transition: transform 180ms ease, top 180ms ease, opacity 180ms ease;
+}
+
+.menu-toggle-box::before {
+  top: 0;
+}
+
+.menu-toggle-box span {
+  top: calc(50% - 1px);
+}
+
+.menu-toggle-box::after {
+  top: calc(100% - 2px);
+}
+
+.menu-toggle[aria-expanded="true"] .menu-toggle-box::before {
+  top: calc(50% - 1px);
+  transform: rotate(45deg);
+}
+
+.menu-toggle[aria-expanded="true"] .menu-toggle-box::after {
+  top: calc(50% - 1px);
+  transform: rotate(-45deg);
+}
+
+.menu-toggle[aria-expanded="true"] .menu-toggle-box span {
+  opacity: 0;
+  transform: scaleX(0.45);
 }
 
 /* --- Button --- */
@@ -475,6 +540,12 @@ main { overflow: hidden; }
 
 @media (prefers-reduced-motion: reduce) {
   .section { opacity: 1; transform: none; transition: none; }
+  .menu-toggle,
+  .menu-toggle-box::before,
+  .menu-toggle-box::after,
+  .menu-toggle-box span {
+    transition: none;
+  }
 }
 
 @media (max-width: 72rem) {
