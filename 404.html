@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Page Not Found | Beachwood Worx</title>
+    <meta name="description" content="The page you were looking for could not be found. Redirecting to Beachwood Worx home page." />
+    <link rel="icon" href="assets/images/favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="assets/css/site.css" />
+    <meta http-equiv="refresh" content="5;url=index.html" />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="site-shell header-bar">
+        <a class="brand" href="index.html" aria-label="Beachwood Worx home">
+          <img class="brand-logo" src="assets/images/logo.jpg" alt="Beachwood Worx" height="52" />
+        </a>
+      </div>
+    </header>
+
+    <main>
+      <section class="site-shell" style="padding: 4rem 1rem; text-align: center;">
+        <h1>Page Not Found</h1>
+        <p>Sorry, the page you were looking for does not exist.</p>
+        <p>You will be redirected to the <a href="index.html">home page</a> in 5 seconds.</p>
+      </section>
+    </main>
+
+    <script>
+      setTimeout(function () {
+        window.location.href = "index.html";
+      }, 5000);
+    </script>
+  </body>
+</html>
