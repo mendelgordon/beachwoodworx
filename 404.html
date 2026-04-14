@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Page Not Found | Beachwood Worx</title>
+    <meta name="description" content="The page you were looking for could not be found. Redirecting to Beachwood Worx home page." />
+    <meta name="robots" content="noindex, nofollow" />
+    <link rel="icon" href="/assets/images/favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="/assets/css/site.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="site-shell header-bar">
+        <a class="brand" href="/" aria-label="Beachwood Worx home">
+          <img class="brand-logo" src="/assets/images/logo.jpg" alt="Beachwood Worx" height="52" />
+        </a>
+      </div>
+    </header>
+
+    <main>
+      <section class="site-shell page-404">
+        <h1>Page Not Found</h1>
+        <p>Sorry, the page you were looking for does not exist.</p>
+        <p id="redirectNotice">You will be redirected to the <a href="/">home page</a> in <span id="countdown">5</span> seconds.</p>
+        <button class="button page-404-cancel" id="cancelRedirect" type="button">Stay on this page</button>
+      </section>
+    </main>
+
+    <script>
+      (function () {
+        var seconds = 5;
+        var countdownEl = document.getElementById("countdown");
+        var cancelBtn = document.getElementById("cancelRedirect");
+        var timer = setInterval(function () {
+          seconds -= 1;
+          if (countdownEl) countdownEl.textContent = seconds;
+          if (seconds <= 0) {
+            clearInterval(timer);
+            window.location.replace("/");
+          }
+        }, 1000);
+        if (cancelBtn) {
+          cancelBtn.addEventListener("click", function () {
+            clearInterval(timer);
+            var noticeEl = document.getElementById("redirectNotice");
+            cancelBtn.remove();
+            if (noticeEl) noticeEl.textContent = "Auto-redirect cancelled. Use the link above to go home.";
+          });
+        }
+      })();
+    </script>
+  </body>
+</html>
