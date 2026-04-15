@@ -577,13 +577,13 @@ main { overflow: hidden; }
   h1, h2 { max-width: 18ch; }
 
   .header-bar { flex-wrap: wrap; padding: 0.8rem 0; }
-  .menu-toggle { display: inline-flex; }
+  .menu-toggle { display: inline-flex; order: 3; }
+  .header-actions { order: 2; margin-left: 0; }
   .site-nav {
-    display: none; width: 100%; flex-direction: column;
+    display: none; width: 100%; flex-direction: column; order: 4;
     align-items: flex-start; padding: 0.4rem 0 0.8rem;
   }
   .site-nav.is-open { display: flex; }
-  .header-actions { margin-left: auto; }
 }
 
 @media (max-width: 42rem) {
@@ -591,6 +591,32 @@ main { overflow: hidden; }
   .header-actions { gap: 0.5rem; }
   .call-chip { display: none; }
   .hero-credentials { flex-direction: column; }
+}
+
+/* Scroll-driven reveal: Free Estimate button fades in once the hero is scrolled past.
+   Both animation-timeline: scroll() and display animation in keyframes require
+   Chrome 116+ / Safari 18+, so the @supports gate covers both features. */
+@supports (animation-timeline: scroll()) {
+  @keyframes reveal-header-actions {
+    from {
+      display: none; /* collapses layout space; supported wherever scroll() is */
+      opacity: 0;
+    }
+    to {
+      display: flex;
+      opacity: 1;
+    }
+  }
+
+  @media (max-width: 42rem) {
+    /* 80px = roughly when the hero headline clears the viewport on small phones;
+       130px = button is fully opaque before the hero CTA scrolls out of view. */
+    .header-actions {
+      animation: reveal-header-actions linear both;
+      animation-timeline: scroll(root);
+      animation-range: 80px 130px;
+    }
+  }
 }
 
 /* --- 404 page --- */
