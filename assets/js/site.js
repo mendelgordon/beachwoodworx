@@ -17,6 +17,7 @@ if (siteHeader) {
     siteHeader.classList.toggle("is-scrolled", window.scrollY > 100);
   };
   window.addEventListener("scroll", onScroll, { passive: true });
+  onScroll();
 }
 
 document.querySelectorAll("[data-year]").forEach((node) => {
